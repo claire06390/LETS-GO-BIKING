@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="b2131b41-3c76-4b65-86a4-905ad73c9691" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/routing_serveurSOAP/Service1/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="54d3381c-b792-4485-956f-6a767d30e747" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/routing_serveurSOAP/Service1/?disco" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="25e57a64-1b23-4c64-a998-be0032aa9aa8" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/routing_serveurSOAP/Service1/?xsd=xsd2" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="e99ff6ec-3758-43fe-af0e-5b31b7b24fd6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/routing_serveurSOAP/Service1/?xsd=xsd0" />
+    <MetadataFile FileName="ProxyService.wsdl" MetadataType="Wsdl" ID="2140d03f-e0b5-4b24-b201-eadee4bb7776" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/routing_serveurSOAP/Service1/?wsdl" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="2cb97950-da51-4022-943d-30f1b2799145" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/routing_serveurSOAP/Service1/?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
