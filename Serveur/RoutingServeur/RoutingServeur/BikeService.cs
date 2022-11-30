@@ -108,19 +108,19 @@ namespace RoutingServeur
                     Double distance_to_location = stationCoordinates.GetDistanceTo(location_coordinates);
                     Double distance_to_destination = stationCoordinates.GetDistanceTo(destination_coordinates);
 
-                    if (distance_to_location != 0 && (min_distance_location == -1 || distance_to_location < min_distance_location) && BikeDispo(station))
+
+                    if (distance_to_location != 0 && distance_to_location < distance_to_destination &&(min_distance_location == -1 || distance_to_location < min_distance_location) && BikeDispo(station))
                     {
                             closet_station_location = station;
                             min_distance_location = distance_to_location;
                      }
 
-                    if (distance_to_destination != 0 && (min_distance_destination == -1 || distance_to_destination < min_distance_destination) && StandDispo(station))
+                    if (distance_to_destination != 0 && distance_to_location > distance_to_destination && (min_distance_destination == -1 || distance_to_destination < min_distance_destination) && StandDispo(station))
                     {
                         closet_station_destination = station;
                         min_distance_destination = distance_to_destination;
                     }
                 }
-
 
             }
             //Affectation des latitudes longitudes des stations 
