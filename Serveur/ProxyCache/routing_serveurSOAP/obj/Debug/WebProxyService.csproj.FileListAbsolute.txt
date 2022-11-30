@@ -19,8 +19,8 @@ C:\Users\cmarini\Desktop\SOC\routing_serveurSOAP\routing_serveurSOAP\bin\Debug\S
 C:\Users\cmarini\Desktop\SOC\routing_serveurSOAP\routing_serveurSOAP\bin\Debug\System.Memory.xml
 C:\Users\cmarini\Desktop\SOC\routing_serveurSOAP\routing_serveurSOAP\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\cmarini\Desktop\SOC\routing_serveurSOAP\routing_serveurSOAP\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\bin\Debug\routing_serveurSOAP.dll.config
-C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\bin\Debug\routing_serveurSOAP.dll
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\bin\Debug\routing_serveurSOAP.exe.config
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\bin\Debug\routing_serveurSOAP.exe
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\bin\Debug\routing_serveurSOAP.pdb
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\bin\Debug\System.Buffers.dll
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\bin\Debug\System.Memory.dll
@@ -36,7 +36,9 @@ C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\b
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\obj\Debug\WebProxyService.csproj.AssemblyReference.cache
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\obj\Debug\WebProxyService.csproj.SuggestedBindingRedirects.cache
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\obj\Debug\routing_serveurSOAP.exe.config
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\obj\Debug\WebProxyService.csproj.CoreCompileInputs.cache
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\obj\Debug\WebProxyService.csproj.CopyComplete
-C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\obj\Debug\routing_serveurSOAP.dll
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\obj\Debug\routing_serveurSOAP.exe
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\ProxyCache\routing_serveurSOAP\obj\Debug\routing_serveurSOAP.pdb
