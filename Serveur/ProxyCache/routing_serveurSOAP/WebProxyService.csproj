@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="JCDecauxObject.cs" />
     <Compile Include="JDecauxContract.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="ProxyCache.cs" />
     <Compile Include="IProxyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -12,10 +12,11 @@ namespace routing_serveurSOAP
     public class ProxyService : IProxyService
     {
         ProxyCache<JCDecauxObject> proxy = new ProxyCache<JCDecauxObject>();
+        int updateDuration = 60;
         public JCDecauxStation GetStationInfo(string contractName, string stationNumber)
         {
             //Mise à jour des jsons représentant les stations toutes les 60s
-            int updateDuration = 60;
+           
             string urlStation = "https://api.jcdecaux.com/vls/v3/stations/" + stationNumber + "?contract=" + contractName + "&apiKey=3a08a8db05929919d5cbaf930c02cfdc401ada98";
             string response = proxy.Get(urlStation, updateDuration).getJson().Replace("\\", string.Empty);
             return JsonSerializer.Deserialize<JCDecauxStation>(response);
@@ -24,21 +25,21 @@ namespace routing_serveurSOAP
         public List<JCDecauxContract> GetListContract()
         {
             string urlContrats = "https://api.jcdecaux.com/vls/v3/contracts?apiKey=3a08a8db05929919d5cbaf930c02cfdc401ada98";
-            string response = proxy.Get(urlContrats).getJson().Replace("\\", string.Empty);
+            string response = proxy.Get(urlContrats, updateDuration).getJson().Replace("\\", string.Empty);
             return JsonSerializer.Deserialize<List<JCDecauxContract>>(response);
         }
 
         public List<JCDecauxStation> GetListStations(string contractName)
         {
             string urlStations = "https://api.jcdecaux.com/vls/v3/stations?contract="+ contractName + "&apiKey=3a08a8db05929919d5cbaf930c02cfdc401ada98";
-            string response = proxy.Get(urlStations).getJson();
+            string response = proxy.Get(urlStations, updateDuration).getJson();
             return JsonSerializer.Deserialize<List<JCDecauxStation>>(response);
         }
 
         public List<JCDecauxStation> GetStations()
         {
             string urlStations = "https://api.jcdecaux.com/vls/v3/stations?apiKey=3a08a8db05929919d5cbaf930c02cfdc401ada98";
-            string response = proxy.Get(urlStations).getJson();
+            string response = proxy.Get(urlStations, updateDuration).getJson();
             return JsonSerializer.Deserialize<List<JCDecauxStation>>(response);
         }
     }
