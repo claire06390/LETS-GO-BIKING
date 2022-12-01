@@ -74,14 +74,17 @@ namespace RoutingServeur
          //   if (itinerary.Error!=true && itinerary.Is_utile != false)
            // {
                 producerInstructions.DeliveryMode = MsgDeliveryMode.NonPersistent;
-                //Envoi des instructions
-                //Step 1 
-                ITextMessage messageInstruction = session.CreateTextMessage("Pour commencé dirigez vous vers la premiere station a fin de recupérer un vélo\n");
+            //Envoi des instructions
+            //Step 1 
+
+                ITextMessage messageInstruction = session.CreateTextMessage("Pour atteindre votre déstination vous aller parcourir km durant minutes \n");
+                producerInstructions.Send(messageInstruction);
+                messageInstruction = session.CreateTextMessage("Pour commencé dirigez vous vers la premiere station a fin de recupérer un vélo\n");
                 producerInstructions.Send(messageInstruction);
                 foreach (Instructions instructions in itinerary.Step1.paths[0].instructions)
                 {
                     int distance = (int)instructions.distance;
-                    messageInstruction = session.CreateTextMessage(instructions.text + " durant " + distance.ToString() + " mètre");
+                    messageInstruction = session.CreateTextMessage(instructions.text + " sur " + distance.ToString() + " mètre");
                     producerInstructions.Send(messageInstruction);
                 }
                 messageInstruction = session.CreateTextMessage("\nVous venez d'arriver a la premiere station de vélo, prenez un vélo\n");
