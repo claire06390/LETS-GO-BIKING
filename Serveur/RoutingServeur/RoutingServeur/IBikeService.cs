@@ -12,7 +12,7 @@ namespace RoutingServeur
     public interface IBikeService
     {
         [OperationContract]
-        Itinerary findItinerary(string location, string destination);
+        void EnqueueItinerary(string location, string destination);
 
 
     }

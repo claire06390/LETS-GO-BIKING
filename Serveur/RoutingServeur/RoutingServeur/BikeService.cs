@@ -11,6 +11,9 @@ using System.Text.Json.Serialization;
 using RoutingServeur.ProxyService;
 using System.Device.Location;
 using System.ServiceModel;
+using Apache.NMS;
+using Apache.NMS.ActiveMQ;
+
 
 
 
@@ -21,12 +24,102 @@ namespace RoutingServeur
     public class BikeService : IBikeService
     {
 
-
         ProxyServiceClient client = new ProxyServiceClient();
+
+        public void EnqueueItinerary(string location, string destination)
+        {
+            Itinerary itinerary = findItinerary(location, destination);
+
+            Uri connecturi = new Uri("activemq:tcp://localhost:61616");
+            ConnectionFactory connectionFactory = new ConnectionFactory(connecturi);
+
+            IConnection connection = connectionFactory.CreateConnection();
+            connection.Start();
+
        
+            ISession session = connection.CreateSession();
+
+            //Queues
+            IDestination queueError = session.GetQueue("error");
+            IDestination queueIsUtile = session.GetQueue("isUtile");
+            IDestination queueInstructions = session.GetQueue("instructions");
+
+
+            //Producers
+            IMessageProducer producerError = session.CreateProducer(queueError);
+            IMessageProducer producerIsUtile = session.CreateProducer(queueIsUtile);
+            IMessageProducer producerInstructions = session.CreateProducer(queueInstructions);
+
+         
+            producerError.DeliveryMode = MsgDeliveryMode.NonPersistent;
+            producerIsUtile.DeliveryMode = MsgDeliveryMode.NonPersistent;
+         
+
+           //Envoi des messages d'erreur et d'utilité
+            ITextMessage messageError = session.CreateTextMessage(itinerary.Error.ToString());
+            ITextMessage messageIsUtile = session.CreateTextMessage(itinerary.Is_utile.ToString());
+            producerError.Send(messageError);
+            producerIsUtile.Send(messageIsUtile);
+
+            if (itinerary.Error == true)
+            {
+                return;
+            }
+
+            if (itinerary.Is_utile == false)
+            {
+                return;
+            }
+
+         //   if (itinerary.Error!=true && itinerary.Is_utile != false)
+           // {
+                producerInstructions.DeliveryMode = MsgDeliveryMode.NonPersistent;
+                //Envoi des instructions
+                //Step 1 
+                ITextMessage messageInstruction = session.CreateTextMessage("Pour commencé dirigez vous vers la premiere station a fin de recupérer un vélo\n");
+                producerInstructions.Send(messageInstruction);
+                foreach (Instructions instructions in itinerary.Step1.paths[0].instructions)
+                {
+                    int distance = (int)instructions.distance;
+                    messageInstruction = session.CreateTextMessage(instructions.text + " durant " + distance.ToString() + " mètre");
+                    producerInstructions.Send(messageInstruction);
+                }
+                messageInstruction = session.CreateTextMessage("\nVous venez d'arriver a la premiere station de vélo, prenez un vélo\n");
+                producerInstructions.Send(messageInstruction);
+
+                //Step 2
+                messageInstruction = session.CreateTextMessage("Maintenant dirigez vous vers la deuxieme station a vélo\n");
+                producerInstructions.Send(messageInstruction);
+                foreach (Instructions instructions in itinerary.Step2.paths[0].instructions)
+                {
+                    int distance = (int)instructions.distance;
+                    messageInstruction = session.CreateTextMessage(instructions.text + " durant " + distance.ToString() + " mètre");
+                    producerInstructions.Send(messageInstruction);
+                }
+                messageInstruction = session.CreateTextMessage("\nVous venez d'arriver a la deuxieme station de vélo, poser votre vélo sur une place dispoible \n");
+                producerInstructions.Send(messageInstruction);
+
+
+                //Step 3
+                messageInstruction = session.CreateTextMessage("Maintenant dirigez vous votre destination finale a pied\n");
+                producerInstructions.Send(messageInstruction);
+                foreach (Instructions instructions in itinerary.Step3.paths[0].instructions)
+                {
+                    int distance = (int)instructions.distance;
+                    messageInstruction = session.CreateTextMessage(instructions.text + " durant " + distance.ToString() + " mètre");
+                    producerInstructions.Send(messageInstruction);
+                }
+                messageInstruction = session.CreateTextMessage("\nVous venez d'arriver a votre destination finale, en esperant que ce trajet vous a plu\n");
+                producerInstructions.Send(messageInstruction);
+          //  }
+
+  
+        }
+
+
+
         public Itinerary findItinerary(string location, string destination)
         {
-            //itineraire retourner si le programme rencontre une erreur
             Itinerary itinerary_error = new Itinerary(true, false, null, null, null);
 
             //Converti adresse en json avec les informations de position
@@ -39,8 +132,9 @@ namespace RoutingServeur
             Places location_places;
             try
             {
-               location_places = JsonSerializer.Deserialize<Places>(location_json);
-            }catch(Exception e)
+                location_places = JsonSerializer.Deserialize<Places>(location_json);
+            }
+            catch (Exception e)
             {
                 Console.WriteLine("\nException Caught!");
                 Console.WriteLine("Message :{0} ", e.Message);
@@ -86,18 +180,18 @@ namespace RoutingServeur
                 return itinerary_error;
             }
 
-            
-            
-         
+
+
+
             //obtenir la station la plus proche de l'arrivé et du depart 
             GeoCoordinate location_coordinates = new GeoCoordinate(location_place_lat, location_place_lon);
             GeoCoordinate destination_coordinates = new GeoCoordinate(destination_place_lat, destination_place_lon);
-            JCDecauxStation closet_station_location =null ;
-            JCDecauxStation closet_station_destination=null;
+            JCDecauxStation closet_station_location = null;
+            JCDecauxStation closet_station_destination = null;
             Double min_distance_location = -1;
             Double min_distance_destination = -1;
 
-            
+
             JCDecauxContract[] contracts = getContracts().Result;
             foreach (JCDecauxContract item in contracts)
             {
@@ -109,11 +203,11 @@ namespace RoutingServeur
                     Double distance_to_destination = stationCoordinates.GetDistanceTo(destination_coordinates);
 
 
-                    if (distance_to_location != 0 && distance_to_location < distance_to_destination &&(min_distance_location == -1 || distance_to_location < min_distance_location) && BikeDispo(station))
+                    if (distance_to_location != 0 && distance_to_location < distance_to_destination && (min_distance_location == -1 || distance_to_location < min_distance_location) && BikeDispo(station))
                     {
-                            closet_station_location = station;
-                            min_distance_location = distance_to_location;
-                     }
+                        closet_station_location = station;
+                        min_distance_location = distance_to_location;
+                    }
 
                     if (distance_to_destination != 0 && distance_to_location > distance_to_destination && (min_distance_destination == -1 || distance_to_destination < min_distance_destination) && StandDispo(station))
                     {
@@ -136,8 +230,8 @@ namespace RoutingServeur
             Step step3;
 
             try
-            {     
-                 // du point de depart a la premiere station , a pied 
+            {
+                // du point de depart a la premiere station , a pied 
                 string json_itinerary1 = Pathing(location_place_lon, location_place_lat, stationA_longitude, stationA_latitude, "foot").Result;
                 step1 = JsonSerializer.Deserialize<Step>(json_itinerary1);
 
@@ -150,7 +244,7 @@ namespace RoutingServeur
                 step3 = JsonSerializer.Deserialize<Step>(json_itinerary3);
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("\nException Caught!");
                 Console.WriteLine("Message :{0} ", e.Message);
@@ -177,7 +271,7 @@ namespace RoutingServeur
             bool is_utile = true;
             int time_with_bike = step1.paths[0].time + step2.paths[0].time + step3.paths[0].time;
             int time_without_bike = step_without_bike.paths[0].time;
-            if(time_with_bike > time_without_bike)
+            if (time_with_bike > time_without_bike)
             {
                 is_utile = false;
             }
@@ -186,6 +280,7 @@ namespace RoutingServeur
             Itinerary itinerary = new Itinerary(false, is_utile, step1, step2, step3);
             return itinerary;
         }
+
 
 
 
