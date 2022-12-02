@@ -28,54 +28,56 @@ namespace RoutingServeur
 
         public void EnqueueItinerary(string location, string destination)
         {
-            Itinerary itinerary = findItinerary(location, destination);
-
-            Uri connecturi = new Uri("activemq:tcp://localhost:61616");
-            ConnectionFactory connectionFactory = new ConnectionFactory(connecturi);
-
-            IConnection connection = connectionFactory.CreateConnection();
-            connection.Start();
-
-       
-            ISession session = connection.CreateSession();
-
-            //Queues
-            IDestination queueError = session.GetQueue("error");
-            IDestination queueIsUtile = session.GetQueue("isUtile");
-            IDestination queueInstructions = session.GetQueue("instructions");
-
-
-            //Producers
-            IMessageProducer producerError = session.CreateProducer(queueError);
-            IMessageProducer producerIsUtile = session.CreateProducer(queueIsUtile);
-            IMessageProducer producerInstructions = session.CreateProducer(queueInstructions);
-
-         
-            producerError.DeliveryMode = MsgDeliveryMode.NonPersistent;
-            producerIsUtile.DeliveryMode = MsgDeliveryMode.NonPersistent;
-         
-
-           //Envoi des messages d'erreur et d'utilité
-            ITextMessage messageError = session.CreateTextMessage(itinerary.Error.ToString());
-            ITextMessage messageIsUtile = session.CreateTextMessage(itinerary.Is_utile.ToString());
-            producerError.Send(messageError);
-            producerIsUtile.Send(messageIsUtile);
-
-            if (itinerary.Error == true)
+            try
             {
-                return;
-            }
+                Itinerary itinerary = findItinerary(location, destination);
 
-            if (itinerary.Is_utile == false)
-            {
-                return;
-            }
+                Uri connecturi = new Uri("activemq:tcp://localhost:61616");
+                ConnectionFactory connectionFactory = new ConnectionFactory(connecturi);
 
-         //   if (itinerary.Error!=true && itinerary.Is_utile != false)
-           // {
+                IConnection connection = connectionFactory.CreateConnection();
+                connection.Start();
+
+
+                ISession session = connection.CreateSession();
+
+                //Queues
+                IDestination queueError = session.GetQueue("error");
+                IDestination queueIsUtile = session.GetQueue("isUtile");
+                IDestination queueInstructions = session.GetQueue("instructions");
+
+
+                //Producers
+                IMessageProducer producerError = session.CreateProducer(queueError);
+                IMessageProducer producerIsUtile = session.CreateProducer(queueIsUtile);
+                IMessageProducer producerInstructions = session.CreateProducer(queueInstructions);
+
+
+                producerError.DeliveryMode = MsgDeliveryMode.NonPersistent;
+                producerIsUtile.DeliveryMode = MsgDeliveryMode.NonPersistent;
+
+
+                //Envoi des messages d'erreur et d'utilité
+                ITextMessage messageError = session.CreateTextMessage(itinerary.Error.ToString());
+                ITextMessage messageIsUtile = session.CreateTextMessage(itinerary.Is_utile.ToString());
+                producerError.Send(messageError);
+                producerIsUtile.Send(messageIsUtile);
+
+                if (itinerary.Error == true)
+                {
+                    return;
+                }
+
+                if (itinerary.Is_utile == false)
+                {
+                    return;
+                }
+
+                //   if (itinerary.Error!=true && itinerary.Is_utile != false)
+                // {
                 producerInstructions.DeliveryMode = MsgDeliveryMode.NonPersistent;
-            //Envoi des instructions
-            //Step 1 
+                //Envoi des instructions
+                //Step 1 
 
                 ITextMessage messageInstruction = session.CreateTextMessage("Pour atteindre votre déstination vous aller parcourir km durant minutes \n");
                 producerInstructions.Send(messageInstruction);
@@ -114,9 +116,16 @@ namespace RoutingServeur
                 }
                 messageInstruction = session.CreateTextMessage("\nVous venez d'arriver a votre destination finale, en esperant que ce trajet vous a plu\n");
                 producerInstructions.Send(messageInstruction);
-          //  }
+                //  }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("\nException Caught!");
+                Console.WriteLine("Message :{0} ", e.Message);
 
-  
+            }
+
+
         }
 
 
