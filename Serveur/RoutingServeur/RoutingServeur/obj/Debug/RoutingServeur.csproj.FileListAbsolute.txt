@@ -46,6 +46,4 @@ C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bi
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\obj\Debug\RoutingServeur.exe
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\Apache.NMS.ActiveMQ.dll
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\Apache.NMS.dll
-C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\ICSharpCode.SharpZipLib.dll
-C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\ICSharpCode.SharpZipLib.pdb
-C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\ICSharpCode.SharpZipLib.xml
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\Ionic.Zlib.Core.dll
