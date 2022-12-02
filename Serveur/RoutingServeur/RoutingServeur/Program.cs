@@ -37,7 +37,10 @@ namespace RoutingServeur
             };
             host.AddServiceEndpoint(typeof(IBikeService), myBinding, "");
 
-  
+
+            host.Description.Behaviors.Remove(typeof(ServiceDebugBehavior));
+            host.Description.Behaviors.Add(new ServiceDebugBehavior { IncludeExceptionDetailInFaults = true });
+
             ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
             smb.HttpGetEnabled = true;
             host.Description.Behaviors.Add(smb);

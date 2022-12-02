@@ -36,9 +36,15 @@ namespace routing_serveurSOAP
 
             host.AddServiceEndpoint(typeof(IProxyService), myBinding, "");
 
+
+
+            host.Description.Behaviors.Remove(typeof(ServiceDebugBehavior));
+            host.Description.Behaviors.Add(new ServiceDebugBehavior { IncludeExceptionDetailInFaults = true });
+
             ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
             smb.HttpGetEnabled = true;
             host.Description.Behaviors.Add(smb);
+
 
         
             host.Open();

@@ -13,6 +13,7 @@ using System.Device.Location;
 using System.ServiceModel;
 using Apache.NMS;
 using Apache.NMS.ActiveMQ;
+using System.Messaging;
 
 
 
@@ -29,7 +30,9 @@ namespace RoutingServeur
         public void EnqueueItinerary(string location, string destination)
         {
             try
+
             {
+
                 Itinerary itinerary = findItinerary(location, destination);
 
                 Uri connecturi = new Uri("activemq:tcp://localhost:61616");
@@ -61,6 +64,7 @@ namespace RoutingServeur
                 ITextMessage messageError = session.CreateTextMessage(itinerary.Error.ToString());
                 ITextMessage messageIsUtile = session.CreateTextMessage(itinerary.Is_utile.ToString());
                 producerError.Send(messageError);
+              
                 producerIsUtile.Send(messageIsUtile);
 
                 if (itinerary.Error == true)
@@ -73,13 +77,15 @@ namespace RoutingServeur
                     return;
                 }
 
-                //   if (itinerary.Error!=true && itinerary.Is_utile != false)
-                // {
+    
+
                 producerInstructions.DeliveryMode = MsgDeliveryMode.NonPersistent;
                 //Envoi des instructions
                 //Step 1 
 
-                ITextMessage messageInstruction = session.CreateTextMessage("Pour atteindre votre déstination vous aller parcourir km durant minutes \n");
+                int distanceTotale = (int) (itinerary.Step1.paths[0].distance + itinerary.Step2.paths[0].distance + itinerary.Step3.paths[0].distance);
+                int timeTotale = (int)(itinerary.Step1.paths[0].time + itinerary.Step2.paths[0].time + itinerary.Step3.paths[0].time)/60;
+                ITextMessage messageInstruction = session.CreateTextMessage("Pour atteindre votre déstination vous aller parcourir "+ distanceTotale+ " mètres durant "+ timeTotale + " minutes \n");
                 producerInstructions.Send(messageInstruction);
                 messageInstruction = session.CreateTextMessage("Pour commencé dirigez vous vers la premiere station a fin de recupérer un vélo\n");
                 producerInstructions.Send(messageInstruction);
@@ -116,7 +122,7 @@ namespace RoutingServeur
                 }
                 messageInstruction = session.CreateTextMessage("\nVous venez d'arriver a votre destination finale, en esperant que ce trajet vous a plu\n");
                 producerInstructions.Send(messageInstruction);
-                //  }
+            
             }
             catch(Exception e)
             {
@@ -124,7 +130,6 @@ namespace RoutingServeur
                 Console.WriteLine("Message :{0} ", e.Message);
 
             }
-
 
         }
 
