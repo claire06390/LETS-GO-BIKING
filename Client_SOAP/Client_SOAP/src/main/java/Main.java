@@ -19,7 +19,11 @@ public class Main {
             System.out.println("\nEntrez une destination :");
             String destination = scanner.nextLine();
             System.out.println("Nous recherchons un itinéraire pour votre demande veuillez patienter \n");
-            iBikeService.enqueueItinerary(begin,destination);
+            try{
+                iBikeService.enqueueItinerary(begin,destination);
+            }catch (Exception e){
+                System.out.println("Un probleme est servenue veuillez veirfier votre connexion internet \n Si le probleme perdure il est possible que ce soit une erreur interne au seveur delivrant l'itinéraire");
+            }
             consumer.run();
             System.out.println("\nVoulez vous chercher un autre itinéraire ? (o/n) ");
             startAgain =scanner.nextLine();
