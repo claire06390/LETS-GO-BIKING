@@ -19,7 +19,9 @@ activemq start
 -Une fois tout ses éléments lancer vous n'avez plus qu'a lancer le client et demander un itinéraire qui
 vous sera donné par instructions dans la console
 
--Ce projet comporte un client en java pour le lancer il faut le compiler puis lancer le main qui se trouve dans la classe Main.java
+-Ce projet comporte un client en java pour le lancer il faut le compiler puis lancer le main qui se trouve dans la classe :
+
+Client\Client_SOAP\src\main\java\Main.java
 
 
 Merci pour votre temps et bonne journée :)
