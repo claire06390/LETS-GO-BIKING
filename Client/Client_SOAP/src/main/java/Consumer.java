@@ -29,7 +29,7 @@ public  class Consumer implements Runnable, ExceptionListener {
             TextMessage textMessage = (TextMessage) message;
             String error = textMessage.getText();
             if(error.equals("True")){
-                System.out.println("Aucun itinéraire trouvé suite a votre demande");
+                System.out.println("Aucun itinéraire trouvé suite à votre demande");
                 consumer.close();
                 session.close();
                 connection.close();
@@ -43,7 +43,7 @@ public  class Consumer implements Runnable, ExceptionListener {
             textMessage = (TextMessage) message;
             String isUtile = textMessage.getText();
             if(isUtile.equals("False")){
-                System.out.println("Pour votre trajet il est plus rapide d'y aller a pieds");
+                System.out.println("Pour votre trajet il est plus rapide d'y aller à pied");
                 consumer.close();
                 session.close();
                 connection.close();
@@ -56,7 +56,7 @@ public  class Consumer implements Runnable, ExceptionListener {
             message = consumer.receive();
             textMessage = (TextMessage) message;
             System.out.println(textMessage.getText());
-            System.out.println("Tapez sur une touche afin de découvrir les instructions de votre trajet pas a pas");
+            System.out.println("Tapez sur la touche 'entrée' afin de découvrir les instructions de votre trajet pas à pas");
             String instruction ="";
             while(instruction!=null){
                 System.in.read();
@@ -71,12 +71,12 @@ public  class Consumer implements Runnable, ExceptionListener {
             session.close();
             connection.close();
         } catch (Exception e) {
-            System.out.println("Caught: " + e);
+            System.out.println(e);
             e.printStackTrace();
         }
     }
     public synchronized void onException(JMSException ex) {
-        System.out.println("JMS Exception occured.  Shutting down client.");
+        System.out.println("Une erreur est survenue" + ex);
     }
 
 
@@ -92,7 +92,7 @@ public  class Consumer implements Runnable, ExceptionListener {
             conn.destroyDestination(new ActiveMQQueue("instructions"));
             connection.close();
         } catch (JMSException e) {
-            System.out.println("Error connecting to the browser please check the URL" + e);
+            System.out.println("Une erreur est survenue" + e);
         }
     }
 

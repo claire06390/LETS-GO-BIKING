@@ -22,7 +22,7 @@ public class Main {
             try{
                 iBikeService.enqueueItinerary(begin,destination);
             }catch (Exception e){
-                System.out.println("Un probleme est servenue veuillez veirfier votre connexion internet \n Si le probleme perdure il est possible que ce soit une erreur interne au seveur delivrant l'itinéraire");
+                System.out.println("Un problème est servenu veuillez verifier votre connexion internet \n Si le problème perdure il est possible que ce soit une erreur interne au serveur délivrant l'itinéraire");
             }
             consumer.run();
             System.out.println("\nVoulez vous chercher un autre itinéraire ? (o/n) ");

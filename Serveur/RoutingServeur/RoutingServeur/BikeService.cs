@@ -84,11 +84,11 @@ namespace RoutingServeur
                 // premiere info temps et distance
                 int distanceTotale = (int)(itinerary.Step1.paths[0].distance + itinerary.Step2.paths[0].distance + itinerary.Step3.paths[0].distance);
                 int timeTotale = (int)(itinerary.Step1.paths[0].time + itinerary.Step2.paths[0].time + itinerary.Step3.paths[0].time) / 60;
-                ITextMessage messageInstruction = session.CreateTextMessage("Pour atteindre votre déstination vous aller parcourir " + distanceTotale + " mètres durant " + timeTotale + " minutes \n");
+                ITextMessage messageInstruction = session.CreateTextMessage("Pour atteindre votre déstination vous allez parcourir " + distanceTotale + " mètres durant " + timeTotale + " minutes \n");
                 producerInstructions.Send(messageInstruction);
                 
                 //Step 1 
-                messageInstruction = session.CreateTextMessage("Pour commencé dirigez vous vers la premiere station a fin de recupérer un vélo\n");
+                messageInstruction = session.CreateTextMessage("Pour commencer dirigez vous vers la première station afin de recupérer un vélo\n");
                 producerInstructions.Send(messageInstruction);
                 foreach (Instructions instructions in itinerary.Step1.paths[0].instructions)
                 {
@@ -96,11 +96,11 @@ namespace RoutingServeur
                     messageInstruction = session.CreateTextMessage(instructions.text + endSentence); 
                     producerInstructions.Send(messageInstruction);
                 }
-                messageInstruction = session.CreateTextMessage("\nVous venez d'arriver a la premiere station de vélo, prenez un vélo\n");
+                messageInstruction = session.CreateTextMessage("\nVous venez d'arriver à la première station de vélo, prenez un vélo\n");
                 producerInstructions.Send(messageInstruction);
 
                 //Step 2
-                messageInstruction = session.CreateTextMessage("Maintenant dirigez vous vers la deuxieme station a vélo\n");
+                messageInstruction = session.CreateTextMessage("Maintenant dirigez vous vers la deuxième station à vélo\n");
                 producerInstructions.Send(messageInstruction);
                 foreach (Instructions instructions in itinerary.Step2.paths[0].instructions)
                 {
@@ -108,12 +108,12 @@ namespace RoutingServeur
                     messageInstruction = session.CreateTextMessage(instructions.text + endSentence);
                     producerInstructions.Send(messageInstruction);
                 }
-                messageInstruction = session.CreateTextMessage("\nVous venez d'arriver a la deuxieme station de vélo, poser votre vélo sur une place dispoible \n");
+                messageInstruction = session.CreateTextMessage("\nVous venez d'arriver à la deuxième station de vélo, posez votre vélo sur une place disponible \n");
                 producerInstructions.Send(messageInstruction);
 
 
                 //Step 3
-                messageInstruction = session.CreateTextMessage("Maintenant dirigez vous votre destination finale a pied\n");
+                messageInstruction = session.CreateTextMessage("Maintenant dirigez vous votre destination finale à pied\n");
                 producerInstructions.Send(messageInstruction);
                 foreach (Instructions instructions in itinerary.Step3.paths[0].instructions)
                 {
@@ -121,7 +121,7 @@ namespace RoutingServeur
                     messageInstruction = session.CreateTextMessage(instructions.text + endSentence);
                     producerInstructions.Send(messageInstruction);
                 }
-                messageInstruction = session.CreateTextMessage("\nVous venez d'arriver a votre destination finale, en esperant que ce trajet vous a plu\n");
+                messageInstruction = session.CreateTextMessage("\nVous venez d'arriver à votre destination finale, en esperant que ce trajet vous a plu\n");
                 producerInstructions.Send(messageInstruction);
             
             }
@@ -140,9 +140,9 @@ namespace RoutingServeur
             switch (instructions.text.Substring(0,2))
             {
                 case "To":
-                    return " puis continuer sur " + distance.ToString() + " mètres";
+                    return " puis continuez sur " + distance.ToString() + " mètres";
                 case "Au":
-                    return " puis continuer sur " + distance.ToString() + " mètres";
+                    return " puis continuez sur " + distance.ToString() + " mètres";
                 case "Ar":
                     return " !";
                 default:
