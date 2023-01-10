@@ -21,8 +21,6 @@ C:\Users\cmarini\Desktop\SOC\RoutingServeur\RoutingServeur\bin\Debug\System.Buff
 C:\Users\cmarini\Desktop\SOC\RoutingServeur\RoutingServeur\bin\Debug\System.Memory.xml
 C:\Users\cmarini\Desktop\SOC\RoutingServeur\RoutingServeur\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\cmarini\Desktop\SOC\RoutingServeur\RoutingServeur\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\RoutingServeur.dll.config
-C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\RoutingServeur.dll
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\RoutingServeur.pdb
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\System.Buffers.dll
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\System.Memory.dll
@@ -42,5 +40,13 @@ C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\ob
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\obj\Debug\RoutingServeur.csproj.CoreCompileInputs.cache
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\obj\Debug\XsdGeneratedCode\GeneratedXsdTypes.cs
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\obj\Debug\RoutingServeur.csproj.CopyComplete
-C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\obj\Debug\RoutingServeur.dll
 C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\obj\Debug\RoutingServeur.pdb
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\RoutingServeur.exe.config
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\RoutingServeur.exe
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\obj\Debug\RoutingServeur.exe
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\Apache.NMS.ActiveMQ.dll
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\Apache.NMS.dll
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\Ionic.Zlib.Core.dll
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\ICSharpCode.SharpZipLib.pdb
+C:\Users\cmarini\Desktop\LETS-GO-BIKING\Serveur\RoutingServeur\RoutingServeur\bin\Debug\ICSharpCode.SharpZipLib.xml
